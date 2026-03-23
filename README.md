@@ -1,1 +1,1 @@
-# Genetic-Algorithm-
+A Genetic Algorithm is an optimization technique inspired by natural selection. It works by generating a population of solutions and improving them using selection, crossover, and mutation until the best solution is found.
