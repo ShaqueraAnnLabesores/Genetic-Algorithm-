@@ -1,0 +1,49 @@
+1. Maximize a Function
+Problem: Find the maximum value of f(x) = x² where x is between 0 and 31
+
+import random
+
+def fitness(x):
+    return x**2
+
+population = [random.randint(0, 31) for _ in range(6)]
+
+for generation in range(10):
+    population = sorted(population, key=fitness, reverse=True)
+    new_pop = population[:2]  # select best 2
+
+    while len(new_pop) < 6:
+        parent1, parent2 = random.sample(population[:4], 2)
+        child = (parent1 + parent2) // 2  # crossover
+        if random.random() < 0.1:
+            child += random.randint(-2, 2)  # mutation
+        new_pop.append(max(0, min(31, child)))
+
+    population = new_pop
+
+print("Best solution:", max(population, key=fitness))
+
+2. Solve Simple Equation
+Problem: Find x such that f(x) = 2x + 3 ≈ 15
+
+import random
+
+def fitness(x):
+    return abs((2*x + 3) - 15)
+
+population = [random.randint(0, 10) for _ in range(6)]
+
+for _ in range(10):
+    population = sorted(population, key=fitness)
+    new_pop = population[:2]
+
+    while len(new_pop) < 6:
+        p1, p2 = random.sample(population[:4], 2)
+        child = (p1 + p2) // 2
+        new_pop.append(child)
+
+    population = new_pop
+
+print("Best x:", population[0])
+
+
